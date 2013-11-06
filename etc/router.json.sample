@@ -1,0 +1,8 @@
+{
+  "ports": {
+    "http": "80"
+  },
+  "routes": {
+    "default://http": "file:///var/www"
+  }
+}
