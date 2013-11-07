@@ -47,12 +47,12 @@ serve = (req, res, proxy, target)->
 
   else if target.protocol == 'http:'
     proxy.proxyRequest req, res,
-      host: target.host
+      host: target.hostname
       port: target.port || 80
 
   else if target.protocol == 'https:'
     proxy.proxyRequest req, res,
-      host: target.host
+      host: target.hostname
       port: target.port || 443
       target:
         https: true
@@ -60,7 +60,7 @@ serve = (req, res, proxy, target)->
   else if target.protocol == 'redirect:'
     parsed = url.parse req.url
     parsed.protocol = 'http:'
-    parsed.host = target.host
+    parsed.host = target.hostname
     parsed.port = target.port
     target.pathname = path.join target.pathname, parsed.pathname
 
