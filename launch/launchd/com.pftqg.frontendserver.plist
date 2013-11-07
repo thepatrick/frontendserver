@@ -7,7 +7,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/usr/local/bin/node</string>
-    <string>/usr/local/frontendserver/start.js</string>
+    <string>/usr/local/bin/frontendserver</string>
   </array>
   <key>KeepAlive</key>
   <true/>
@@ -17,8 +17,12 @@
   <string>/usr/local/frontendserver</string>
   <key>EnvironmentVariables</key>
   <dict>
-    <key>NODE_ENV</key>
-    <string>production</string>
+    <key>FES_CONFIG</key>
+    <string>/usr/local/frontendserver/router.json</string>
   </dict>
+  <key>StandardOutPath</key>
+  <string>/var/log/frontendserver.log</string>
+  <key>StandardErrorPath</key>
+  <string>/var/log/frontendserver.err.log</string>
 </dict>
 </plist>
