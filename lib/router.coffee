@@ -44,7 +44,6 @@ serve = (req, res, proxy, conf)->
 
   else if conf.target.protocol == 'file:'
     parsed = url.parse req.url
-    console.log "file:/", parsed.pathname, "=>", conf.target.path
     send(req, parsed.pathname).root(conf.target.path).pipe(res)
 
   else if conf.target.protocol == 'http:'

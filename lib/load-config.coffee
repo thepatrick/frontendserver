@@ -56,10 +56,8 @@ module.exports.loadFile = (configPath)->
     if host?
       if host.byPath.length > 0
         match = first host.byPath, (byPath)->
-          console.log 'compare', pathname.substring(0, byPath.path.length) == byPath.path
           pathname.substring(0, byPath.path.length) == byPath.path
       if match?
-        console.log match
         match =
           _path: match.path
           target: match.target
@@ -79,7 +77,6 @@ module.exports.loadFile = (configPath)->
             else
               reqUrl
 
-      console.log 'match', match
       match
 
   reloadConfig()
