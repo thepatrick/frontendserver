@@ -32,10 +32,9 @@ serve = (req, res, proxy, conf)->
 
   res.setHeader 'Server', serverAgent
 
-  rewrittenUrl = conf.rewrite req.url
-
-  console.log "Rewriting", req.url, "to", rewrittenUrl
-  req.url = rewrittenUrl
+  if conf?
+    rewrittenUrl = conf.rewrite req.url
+    req.url = rewrittenUrl
 
   unless conf?
     res.setHeader 'Content-Type', 'text/html'
