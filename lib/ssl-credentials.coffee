@@ -35,7 +35,11 @@ class SSLCredentials
 
 
   getCredentialsContext: (cer)->
-    @credentials[cer]
+    # Frist try for a cert for this hostname
+    @credentials[cer] || 
+    # Then try for a cert for a wildcard version of this hostname
+    @credentials[cer.replace(/^[^\.]+/,"")]
+    # Returning null will use the default credentials
 
 module.exports = (@base, callback)->
   new SSLCredentials @base, callback
