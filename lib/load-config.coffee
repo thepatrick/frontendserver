@@ -45,7 +45,7 @@ module.exports.loadFile = (configPath)->
         targetProtocol.forEach (protoModifier)->
           target[protoModifier] = true
 
-        if match.pathname != "/"
+        if match.pathname && match.pathname != "/"
           host.byPath.push path: match.pathname, target: target
         else
           host.default = url.parse directive
@@ -100,4 +100,4 @@ module.exports.loadFile = (configPath)->
     # Then try the wildcard hostname that would match this
     lookup(proto, host.replace(/^[^\.]+/,""), pathname) ||
     # Then default
-    lookup("default:", proto, pathname)
+    lookup("default:", proto.substring(0,proto.length-1), pathname)
