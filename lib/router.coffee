@@ -28,7 +28,7 @@ util.log "No host matched file: " + the404Path
 the404 = fs.readFileSync(the404Path)
 
 serve = (req, res, proxy, conf)->
-  console.log new Date, req.headers.host, req.url, "=>", conf.target?.protocol || 404
+  console.log new Date, req.headers.host, req.url, "=>", conf?.target?.protocol || 404
 
   res.setHeader 'Server', serverAgent
 
