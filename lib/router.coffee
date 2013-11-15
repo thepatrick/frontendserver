@@ -82,6 +82,11 @@ serve = (req, res, proxy, conf)->
     res.writeHead 302
     res.end "Redirecting to... " + url.format parsed
 
+  else
+    res.writeHead 500
+    util.log "Server misconfigured, unknown protocol: " + conf.target.protocol
+    res.end "Internal server error"
+
 ##
  # HTTP 
  ##

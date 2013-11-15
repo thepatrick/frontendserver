@@ -48,7 +48,7 @@ module.exports.loadFile = (configPath)->
         if match.pathname && match.pathname != "/"
           host.byPath.push path: match.pathname, target: target
         else
-          host.default = url.parse directive
+          host.default = target
 
   lookup = (proto, host, pathname)->
     # does this proto/host have any byPath?
