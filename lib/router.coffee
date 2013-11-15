@@ -64,7 +64,6 @@ serve = (req, res, proxy, conf)->
     host = [conf.target.hostname]
     host.push(conf.target.port) if conf.target.port?
     parsed.host = host.join(":")
-    parsed.pathname = path.join conf.target.pathname, parsed.pathname
     
     res.setHeader 'Location', url.format parsed
     res.writeHead 302
@@ -76,7 +75,6 @@ serve = (req, res, proxy, conf)->
     host = [conf.target.hostname]
     host.push(conf.target.port) if conf.target.port?
     parsed.host = host.join(":")
-    parsed.pathname = path.join conf.target.pathname, parsed.pathname
 
     res.setHeader 'Location', url.format parsed
     res.writeHead 302

@@ -63,11 +63,11 @@ module.exports.loadFile = (configPath)->
           target: match.target
           rewrite: (reqUrl)->
             if @target.nopath
-              "/"
+              @target.pathname
             else if @target.nostrippath
-              reqUrl
+              path.join @target.pathname, reqUrl
             else
-              path.join "/", reqUrl.substring(@_path.length)
+              path.join @target.pathname, reqUrl.substring(@_path.length)
       else
         match = 
           target: host.default
