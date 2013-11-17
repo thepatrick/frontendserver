@@ -73,10 +73,11 @@ module.exports.loadFile = (configPath)->
           target: host.default
           _path: "/"
           rewrite: (reqUrl)-> 
-			targetPathBase= if @target.protocol == 'file:'
-				''
-			else
-				@target.pathname
+            targetPathBase = if @target.protocol == 'file:'
+              ''
+            else
+              @target.pathname
+        
             if @target.nopath
               targetPathBase
             else if @target.nostrippath
