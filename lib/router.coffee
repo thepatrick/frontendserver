@@ -124,7 +124,7 @@ if config.get('ssl')?
       serve req, res, proxy, config.lookup(req, 'https:')
 
   httpsServer.on 'upgrade', (req, socket, head)->
-    httpServer.proxy.proxyWebSocketRequest req, socket, head,  lookup(req, config.lookup(req, 'https:'))
+    httpsServer.proxy.proxyWebSocketRequest req, socket, head,  lookup(req, config.lookup(req, 'https:'))
 
   credentials = sslCredentials sslPath, (err)->
     if err
