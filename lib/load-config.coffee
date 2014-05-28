@@ -63,15 +63,15 @@ module.exports.loadFile = (configPath)->
           target: match.target
           rewrite: (reqUrl)->
             targetPathBase = if @target.protocol == 'file:'
-              ''
+              '/'
             else
               @target.pathname
             if @target.nopath
               @target.pathname
             else if @target.nostrippath
-              path.join @target.pathname, reqUrl
+              path.join targetPathBase, reqUrl
             else
-              path.join @target.pathname, reqUrl.substring(@_path.length)
+              path.join targetPathBase, reqUrl.substring(@_path.length)
       else
         match = 
           target: host.default
@@ -91,7 +91,8 @@ module.exports.loadFile = (configPath)->
 
       match
 
-  reloadConfig()
+  reloadConfig (err)->
+    throw err if err?
 
   get: (key)->
     json[key]
