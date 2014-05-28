@@ -1,7 +1,7 @@
 frontendserver
 ==============
 
-A wrapper around node-http-server, to make it easier to use with name-based SSL.
+A wrapper around node-http-proxy, to make it easier to use with name-based SSL.
 
 Running
 -------
