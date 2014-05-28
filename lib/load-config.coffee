@@ -45,6 +45,14 @@ module.exports.loadFile = (configPath)->
         targetProtocol.forEach (protoModifier)->
           target[protoModifier] = true
 
+        if target.protocol == 'file:'
+          try
+            if fs.statSync(target.path).isFile()
+              target.isFile = path.basename target.path
+              target.pathname = target.path = path.dirname target.path
+          catch err
+            return done Error "Error verifying #{target.path}: #{err.message}"
+
         if match.pathname && match.pathname != "/"
           host.byPath.push path: match.pathname, target: target
         else
@@ -62,21 +70,24 @@ module.exports.loadFile = (configPath)->
           _path: match.path
           target: match.target
           rewrite: (reqUrl)->
-            targetPathBase = if @target.protocol == 'file:'
-              '/'
+            if @target.protocol == 'file:' and @target.isFile
+              @target.isFile
             else
-              @target.pathname
-            if @target.nopath
-              @target.pathname
-            else if @target.nostrippath
-              path.join targetPathBase, reqUrl
-            else
-              path.join targetPathBase, reqUrl.substring(@_path.length)
+              targetPathBase = if @target.protocol == 'file:'
+                '/'
+              else
+                @target.pathname
+              if @target.nopath
+                @target.pathname
+              else if @target.nostrippath
+                path.join targetPathBase, reqUrl
+              else
+                path.join targetPathBase, reqUrl.substring(@_path.length)
       else
-        match = 
+        match =
           target: host.default
           _path: "/"
-          rewrite: (reqUrl)-> 
+          rewrite: (reqUrl)->
             targetPathBase = if @target.protocol == 'file:'
               '/'
             else
@@ -106,7 +117,7 @@ module.exports.loadFile = (configPath)->
     pathname = reqUrl.pathname
 
     # Try the hostname first
-    lookup(proto, host, pathname) || 
+    lookup(proto, host, pathname) ||
     # Then try the wildcard hostname that would match this
     lookup(proto, host.replace(/^[^\.]+/,""), pathname) ||
     # Then default

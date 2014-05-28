@@ -44,6 +44,7 @@ A typical routes key looks like:
     "http://test2/": "https://127.0.0.1:9998/",
     "http://test3/": "redirect://test1/",
     "http://test4/": "file:///var/www/test4/",
+    "http://test5/": "file:///var/www/test5/test.html",
     "default://http": "file://var/www/default/"
   }
 }
@@ -66,6 +67,10 @@ Redirects HTTP requests from `http://test3/` to `http://test1/`. The path/query 
 **`"http://test4/": "file:///var/www/test4/"`**
 
 Requests to `http://test4/` will be served directly by frontendserver from `/var/www/test4/`.
+
+**`"http://test5/": "file:///var/www/test5/test.html"`**
+
+Requests to any URL at `http://test4/` will be served directly by frontendserver with the file `/var/www/test5/test.html`.
 
 **`"default://http": "file://var/www/default/"`**
 
@@ -103,7 +108,7 @@ Licence
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Patrick Quinn-Graham
+Copyright (c) 2014 Patrick Quinn-Graham
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
