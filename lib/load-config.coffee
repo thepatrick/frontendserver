@@ -11,6 +11,14 @@ first = (arr, match)->
       true
   matched
 
+joinURLs = (before, after)->
+  if before[before.length-1] == '/' and after[0] == '/'
+    before + after.substring(1)
+  else if before[before.length-1] == '/' || after[0] == '/'
+    before + after
+  else
+    before + '/' + after
+
 module.exports.loadFile = (configPath)->
 
   json = null
@@ -80,9 +88,9 @@ module.exports.loadFile = (configPath)->
               if @target.nopath
                 @target.pathname
               else if @target.nostrippath
-                path.join targetPathBase, reqUrl
+                joinURLs targetPathBase, reqUrl
               else
-                path.join targetPathBase, reqUrl.substring(@_path.length)
+                joinURLs targetPathBase, reqUrl.substring(@_path.length)
       else
         match =
           target: host.default
@@ -96,9 +104,9 @@ module.exports.loadFile = (configPath)->
             if @target.nopath
               targetPathBase
             else if @target.nostrippath
-              path.join targetPathBase, reqUrl
+              joinURLs targetPathBase, reqUrl
             else
-              path.join targetPathBase, reqUrl.substring(@_path.length)
+              joinURLs targetPathBase, reqUrl.substring(@_path.length)
 
       match
 
