@@ -1,8 +1,8 @@
 async  = require 'async'
-crypto = require 'crypto'
 dive   = require 'dive'
 fs     = require 'fs'
 path   = require 'path'
+tls    = require 'tls'
 
 class SSLCredentials
 
@@ -30,13 +30,13 @@ class SSLCredentials
         if err || !json
           cb Error "Error reading " + file + ": " + err?.message || "Invalid data"
         else
-          @credentials[path.basename(file, ".json")] = crypto.createCredentials(json).context
+          @credentials[path.basename(file, ".json")] = tls.createSecureContext(json)
           cb()
 
 
   getCredentialsContext: (cer)->
     # Frist try for a cert for this hostname
-    @credentials[cer] || 
+    @credentials[cer] ||
     # Then try for a cert for a wildcard version of this hostname
     @credentials[cer.replace(/^[^\.]+/,"")]
     # Returning null will use the default credentials

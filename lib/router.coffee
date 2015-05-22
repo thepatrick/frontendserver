@@ -115,8 +115,8 @@ if config.get('ssl')?
 
   httpsServer = httpProxy.createServer
     https:
-      SNICallback: (hostname)->
-        credentials.getCredentialsContext hostname
+      SNICallback: (hostname, callback)->
+        callback null, credentials.getCredentialsContext hostname
       key: ssl.key
       cert: ssl.cert
       ca: ssl.ca
