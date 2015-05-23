@@ -1,6 +1,6 @@
 {
   "name": "frontendserver",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "A wrapper around node-http-server, to make it easier to use with name-based SSL.",
   "homepage": "https://github.com/thepatrick/frontendserver",
   "bugs": "https://github.com/thepatrick/frontendserver/issues",
@@ -14,13 +14,18 @@
     "url": "https://github.com/thepatrick/frontendserver.git"
   },
   "dependencies": {
-    "http-proxy": "0.10.3",
-    "send": "0.9.3",
-    "dive": "~0.3.0",
     "async": "~0.2.9",
+    "babel": "^5.4.7",
+    "coffee-script": "~1.6.3",
+    "dive": "~0.3.0",
+    "http-proxy": "0.10.3",
+    "lodash": "^3.9.1",
     "optimist": "~0.6.0",
-    "coffee-script": "~1.6.3"
+    "q": "^1.4.1",
+    "send": "0.9.3"
   },
-  "engines" : { "node" : ">=0.12.2" },
+  "engines": {
+    "node": ">=0.12.2"
+  },
   "preferGlobal": true
 }

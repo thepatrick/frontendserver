@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-require('coffee-script');
-require('../lib/router.coffee');
+require('babel/register');
+require('../lib/router.js');

@@ -1,0 +1,14 @@
+{
+    "rules": {
+        "no-multi-spaces": false,
+        "global-strict": false,
+        "quotes": false,
+        "comma-dangle": false,
+        "no-trailing-spaces": [2, { "skipBlankLines": true }]
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    }
+}
