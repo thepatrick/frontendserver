@@ -1,6 +1,6 @@
 {
   "name": "frontendserver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A wrapper around node-http-server, to make it easier to use with name-based SSL.",
   "homepage": "https://github.com/thepatrick/frontendserver",
   "bugs": "https://github.com/thepatrick/frontendserver/issues",
